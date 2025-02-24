@@ -27,7 +27,7 @@
     </div>
 
     <script>
-        document.addEventListener("DOMContentLoaded", async()=>{
+        document.addEventListener('DOMContentLoaded', async()=>{
             await fetch('usuario', {
                 method: "GET",
                 headers: { "Content-Type": "application/json" }

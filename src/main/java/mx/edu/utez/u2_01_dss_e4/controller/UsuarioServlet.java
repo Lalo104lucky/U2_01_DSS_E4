@@ -11,8 +11,6 @@ import java.io.IOException;
 @WebServlet(name = "UsuarioServlet", urlPatterns = {"/inicio", "/usuario"})
 public class UsuarioServlet extends HttpServlet {
 
-
-
     protected void processRequest (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException  {
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
