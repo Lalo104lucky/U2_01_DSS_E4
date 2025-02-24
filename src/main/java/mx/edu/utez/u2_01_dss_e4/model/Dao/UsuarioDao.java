@@ -19,6 +19,9 @@ public class UsuarioDao {
     private static ResultSet rs;
 
     private static final String get_personas = "SELECT * FROM personas";
+    private static final String delete_usuario = "DELETE FROM personas WHERE id = ?";
+    private static final String update_usuario = "UPDATE personas SET nombre = ?, apellido_m = ?, apellido_p = ?, correo = ?, telefono = ?, edad = ? WHERE id = ?";
+
 
     public static List<UsuarioBean> mostrarPersonas(){
         List<UsuarioBean> personas = new LinkedList<>();
@@ -45,6 +48,45 @@ public class UsuarioDao {
             closeConnections();
         }
         return personas;
+    }
+
+    public static boolean eliminarUsuario(int id) {
+        boolean result = false;
+        try {
+            conn = new MySQLConnection().getConnection();
+            pstm = conn.prepareStatement(delete_usuario);
+            pstm.setInt(1, id);
+            int affectedRows = pstm.executeUpdate();
+            result = affectedRows > 0;
+        } catch (SQLException e) {
+            Logger.getLogger(UsuarioDao.class.getName()).log(Level.SEVERE, "Error al eliminar usuario -> ", e);
+        } finally {
+            closeConnections();
+        }
+        return result;
+    }
+
+
+    public static boolean actualizarUsuario(int id, String nombre, String apellido_m, String apellido_p, String correo, String telefono, int edad) {
+        boolean result = false;
+        try {
+            conn = new MySQLConnection().getConnection();
+            pstm = conn.prepareStatement(update_usuario);
+            pstm.setString(1, nombre);
+            pstm.setString(2, apellido_m);
+            pstm.setString(3, apellido_p);
+            pstm.setString(4, correo);
+            pstm.setString(5, telefono);
+            pstm.setInt(6, edad);
+            pstm.setInt(7, id);
+            int affectedRows = pstm.executeUpdate();
+            result = affectedRows > 0;
+        } catch (SQLException e) {
+            Logger.getLogger(UsuarioDao.class.getName()).log(Level.SEVERE, "Error al actualizar usuario -> ", e);
+        } finally {
+            closeConnections();
+        }
+        return result;
     }
 
     public static void closeConnections() {
