@@ -15,30 +15,18 @@ public class UsuarioServlet extends HttpServlet {
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
         Gson gson = new Gson();
-        HttpSession session = request.getSession();
-        String data = (String) session.getAttribute("session");
         String action = request.getServletPath();
-
-        if (data != null){
-            String[] dataSession = data.split("/");
-            if (dataSession[2].equals("admin")) {
-                switch (action) {
-                    case "/inicio":
-                        response.sendRedirect(request.getContextPath() + "/home.jsp");
-                        System.out.println("Página principal");
-                        break;
-                    case "/usuario":
-                        String json = null;
-                        json = gson.toJson(UsuarioDao.mostrarPersonas());
-                        response.getWriter().write(json);
-                        System.out.println(json);
-                        break;
-                }
-            } else {
-                response.sendRedirect(request.getContextPath() + "/403.jsp");
-            }
-        } else {
-            response.sendRedirect(request.getContextPath() + "/403.jsp");
+        switch (action) {
+            case "/inicio":
+                response.sendRedirect(request.getContextPath() + "/home.jsp");
+                System.out.println("Página principal");
+                break;
+            case "/usuario":
+                String json = null;
+                json = gson.toJson(UsuarioDao.mostrarPersonas());
+                response.getWriter().write(json);
+                System.out.println(json);
+                break;
         }
     }
 
