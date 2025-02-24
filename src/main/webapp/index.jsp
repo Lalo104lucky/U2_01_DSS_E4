@@ -18,11 +18,13 @@
     <form id="loginForm">
         <div class="mb-3">
             <label for="correo" class="form-label">Correo Electrónico</label>
-            <input type="email" name="correo" pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$" class="form-control" id="correo" required>
+            <input type="email" name="correo" pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$"
+                   class="form-control" id="correo" required>
         </div>
         <div class="mb-3">
             <label for="contra" class="form-label">Contraseña</label>
-            <input type="password" name="contra" class="form-control" id="contra" required>
+            <input type="password" name="contra" pattern="^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$"
+                   class="form-control" id="contra" required>
         </div>
         <button type="submit" class="btn btn-primary w-100">Ingresar</button>
     </form>

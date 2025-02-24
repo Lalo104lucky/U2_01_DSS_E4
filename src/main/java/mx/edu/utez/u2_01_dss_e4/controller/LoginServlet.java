@@ -55,12 +55,21 @@ public class LoginServlet extends HttpServlet {
         loginBean = gson.fromJson(requestBody, LoginBean.class);
         HttpSession session = request.getSession();
         boolean validuser = LoginDao.login(loginBean, session);
-        if (validuser) {
-            response.getWriter().write(gson.toJson("Inicio de sesión exitoso"));
-        } else {
+        if (!validuser) {
             response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
             response.getWriter().write(gson.toJson("Credenciales Incorrectas"));
         }
+
+        if(!loginBean.correo.matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$")){
+            response.getWriter().write(gson.toJson("Correo no válido"));
+        }
+
+        if(!loginBean.contra.matches("^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$")){
+            response.getWriter().write(gson.toJson("Formato de contraseña no apta"));
+        }
+
+        response.getWriter().write(gson.toJson("Inicio de sesión exitoso"));
+
     }
 
     private void signOut(HttpServletRequest request, HttpServletResponse response) throws IOException {
