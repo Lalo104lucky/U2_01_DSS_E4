@@ -60,14 +60,6 @@ public class LoginServlet extends HttpServlet {
             response.getWriter().write(gson.toJson("Credenciales Incorrectas"));
         }
 
-        if(!loginBean.correo.matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$")){
-            response.getWriter().write(gson.toJson("Correo no válido"));
-        }
-
-        if(!loginBean.contra.matches("^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$")){
-            response.getWriter().write(gson.toJson("Formato de contraseña no apta"));
-        }
-
         response.getWriter().write(gson.toJson("Inicio de sesión exitoso"));
 
     }

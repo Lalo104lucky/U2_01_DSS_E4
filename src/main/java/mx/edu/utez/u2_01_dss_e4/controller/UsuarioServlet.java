@@ -8,7 +8,10 @@ import mx.edu.utez.u2_01_dss_e4.model.Dao.UsuarioDao;
 
 import java.io.IOException;
 
-@WebServlet(name = "UsuarioServlet", urlPatterns = {"/inicio", "/usuario"})
+@WebServlet(name = "UsuarioServlet", urlPatterns = {
+        "/inicio",
+        "/usuario"
+})
 public class UsuarioServlet extends HttpServlet {
 
     protected void processRequest (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException  {
@@ -26,6 +29,11 @@ public class UsuarioServlet extends HttpServlet {
                 json = gson.toJson(UsuarioDao.mostrarPersonas());
                 response.getWriter().write(json);
                 System.out.println(json);
+                break;
+            default:
+                response.setStatus(HttpServletResponse.SC_NOT_FOUND);
+                response.getWriter().write(gson.toJson("recurso no encontrado"));
+                response.sendRedirect(request.getContextPath() + "/404.jsp");
                 break;
         }
     }
