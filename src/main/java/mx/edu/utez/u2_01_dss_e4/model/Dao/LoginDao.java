@@ -19,7 +19,8 @@ public class LoginDao {
         String sqlQuery = "SELECT * FROM personas where correo = ? and contrasena = sha1(?);";
         String sqlBitacora = "INSERT INTO bitacora VALUES (null, ?, CURRENT_TIMESTAMP, ?);";
 
-        try (Connection conn = connection.getConnection();
+        try (
+                Connection conn = connection.getConnection();
              PreparedStatement pstm = conn.prepareStatement(sqlQuery)) {
             pstm.setString(1, loginBean.correo);
             pstm.setString(2, loginBean.contra);
@@ -58,5 +59,4 @@ public class LoginDao {
         }
         return false;
     }
-
 }
