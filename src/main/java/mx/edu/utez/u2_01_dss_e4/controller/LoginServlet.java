@@ -32,7 +32,6 @@ public class LoginServlet extends HttpServlet {
                 break;
             case "/signIn":
                 signIn(request, response);
-                System.out.println("Sesión iniciada");
                 break;
             case "/signOut":
                 signOut(request, response);

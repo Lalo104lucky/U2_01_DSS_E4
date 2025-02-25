@@ -35,7 +35,7 @@ public class LoginDao {
                     // Insertar en bitácora
                     try (PreparedStatement pstmBitacora = conn.prepareStatement(sqlBitacora)) {
                         pstmBitacora.setInt(1, userId);
-                        pstmBitacora.setString(2, "Método POST");
+                        pstmBitacora.setString(2, "Método POST - Inicio de Sesion");
                         System.out.println(sqlQuery);
                         int res = pstmBitacora.executeUpdate();
                         return res > 0;

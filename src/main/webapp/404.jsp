@@ -15,7 +15,7 @@
                 <p class="mb-4">
                     La página que buscas ha desaparecido en el vacío digital, pero no te preocupes, ¡aún hay mucho por explorar!
                 </p>
-                <a href="" class="btn btn-primary">Volver al inicio</a>
+                <a href="home.jsp" class="btn btn-primary">Volver al inicio</a>
             </div>
             <div class="col-6 d-flex justify-content-center">
                 <img src="./resources/sadface.png" width="180" height="180" class="img-fluid"> <!-- img-fluid para imágenes responsivas -->
